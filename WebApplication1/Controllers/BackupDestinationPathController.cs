@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<BackupDestinationPathTable> Get()
+        public List<BackupDestinationPath> Get()
         {
             return this.context.BackupDestinations.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public BackupDestinationPathTable Get(int id)
+        public BackupDestinationPath Get(int id)
         {
             return this.context.BackupDestinations.Find(id);
         }
 
         [HttpPost]
-        public BackupDestinationPathTable Create(BackupDestinationPathTable client)
+        public BackupDestinationPath Create(BackupDestinationPath client)
         {
             this.context.BackupDestinations.Add(client);
             this.context.SaveChanges();
@@ -38,17 +38,16 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, BackupDestinationPathTable client)
+        public void Update(int id, BackupDestinationPath client)
         {
-            BackupDestinationPathTable db = this.context.BackupDestinations.Find(id);
+            BackupDestinationPath db = this.context.BackupDestinations.Find(id);
 
             db.Name = client.Name;
-            db.Path  = client.Path;
-            db.SettingGroupId = client.SettingGroupId;
+            db.Path  = client.Path;            
             db.Type = client.Type;
             db.Ip = client.Ip;
             db.Username = client.Username;
-            db.Password = client.Password;
+            db.Password = client.Password;            
 
             this.context.SaveChanges();
             //return db;
@@ -58,7 +57,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            BackupDestinationPathTable client = this.context.BackupDestinations.Find(id);
+            BackupDestinationPath client = this.context.BackupDestinations.Find(id);
             this.context.BackupDestinations.Remove(client);
             this.context.SaveChanges();
         }

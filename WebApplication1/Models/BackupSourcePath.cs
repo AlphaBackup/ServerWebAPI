@@ -7,22 +7,19 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("clients")]
-    public class ClientsTable
+    [Table("backup_source_path")]
+    public class BackupSourcePath
     {
         [Column("id")]
-        public int Id { get; }
+        public int Id { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("activated")]
-        public int Activated { get; set; }
+        [Column("path")]
+        public string Path { get; set; }
 
-        [Column("ip_address")]
-        public string Ip { get; set; }
-
-        [Column("mac_adress")]
-        public string MacAddress { get; set; }
+        //[Column("setting_group_id")]
+        //public int SettingGroupId { get; set; }
     }
 }

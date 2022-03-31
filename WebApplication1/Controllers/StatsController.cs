@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<StatsTable> Get()
+        public List<Stats> Get()
         {
             return this.context.Stats.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public StatsTable Get(int id)
+        public Stats Get(int id)
         {
             return this.context.Stats.Find(id);
         }
 
         [HttpPost]
-        public StatsTable Create(StatsTable client)
+        public Stats Create(Stats client)
         {
             this.context.Stats.Add(client);
             this.context.SaveChanges();
@@ -38,11 +38,10 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, StatsTable client)
+        public void Update(int id, Stats client)
         {
-            StatsTable db = this.context.Stats.Find(id);
+            Stats db = this.context.Stats.Find(id);
 
-            db.GroupId = client.GroupId;
             db.Date = client.Date;
             db.BackupFileAmount = client.BackupFileAmount;
             db.State = client.State;
@@ -55,7 +54,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            StatsTable client = this.context.Stats.Find(id);
+            Stats client = this.context.Stats.Find(id);
             this.context.Stats.Remove(client);
             this.context.SaveChanges();
         }

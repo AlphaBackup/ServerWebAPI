@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,40 +10,40 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UsersController : ControllerBase
+    public class AdminSettingsController : ControllerBase
     {
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<User> Get()
+        public List<AdminSettings> Get()
         {
-            return this.context.Users.ToList();
+            return this.context.Settings.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public User Get(int id)
+        public AdminSettings Get(int id)
         {
-            return this.context.Users.Find(id);
+            return this.context.Settings.Find(id);
         }
 
         [HttpPost]
-        public User Create(User user)
+        public AdminSettings Create(AdminSettings client)
         {
-            this.context.Users.Add(user);
+            this.context.Settings.Add(client);
             this.context.SaveChanges();
 
-            return user;
+            return client;
         }
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, User user)
+        public void Update(int id, AdminSettings client)
         {
-            User db = this.context.Users.Find(id);
-            db.Name = user.Name;
-            db.Surname = user.Surname;
-            db.Age = user.Age;
+            AdminSettings db = this.context.Settings.Find(id);
+
+            db.Email = client.Email;
+            db.Language = client.Language;
 
             this.context.SaveChanges();
             //return db;
@@ -53,8 +53,8 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            User user = this.context.Users.Find(id);
-            this.context.Users.Remove(user);
+            AdminSettings client = this.context.Settings.Find(id);
+            this.context.Settings.Remove(client);
             this.context.SaveChanges();
         }
     }

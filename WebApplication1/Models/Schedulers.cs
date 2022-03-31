@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("schedulers")]
-    public class SchedulersTable
+    public class Schedulers
     {
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("setting_group_id")]
-        public virtual List<SettingGroupsTable> SettingGroupId { get; set; }
+        //[Column("setting_group_id")]
+        //public int SettingGroupId { get; set; }
 
         [Column("name")]
         public string Name { get; set; }

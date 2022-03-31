@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("backup_destination_path")]
-    public class BackupDestinationPathTable
+    public class BackupDestinationPath
     {
         [Column("id")]
         public int Id { get; set; }
@@ -18,10 +18,7 @@ namespace WebApplication1.Models
 
         [Column("path")]
         public string Path { get; set; }
-
-        [Column("setting_group_id")]
-        public virtual List<SettingGroupsTable> SettingGroupId { get; set; }
-
+        
         [Column("type")]
         public int Type { get; set; }
 
@@ -33,5 +30,8 @@ namespace WebApplication1.Models
 
         [Column("password")]
         public string Password { get; set; }
+
+        //[Column("setting_group_id")]
+        //public int SettingGroupId { get; set; }
     }
 }

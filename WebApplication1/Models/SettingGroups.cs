@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("setting_groups")]
-    public class SettingGroupsTable
+    public class SettingGroups
     {
         [Column("id")]
         public int Id { get; set; }
@@ -30,5 +30,10 @@ namespace WebApplication1.Models
 
         [Column("backup_package_limit")]
         public int BackupPackageLimit { get; set; }
+
+        public virtual List<BackupSourcePath> BackupSourcePaths { get; set; }
+        public virtual List<BackupDestinationPath> BackupDestinationPaths { get; set; }
+        public virtual List<Schedulers> Schedulers { get; set; }
+        public virtual List<ClientGroups> ClientGroups { get; set; }
     }
 }

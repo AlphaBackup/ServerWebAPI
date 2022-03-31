@@ -9,32 +9,28 @@ namespace WebApplication1.Models
 {
     public class MyContext : DbContext
     {
-        public DbSet<User> Users { get; set; }
+        public DbSet<Stats> Stats { get; set; }
 
-        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<ClientGroups> ClientGroups { get; set; }
 
-        public DbSet<StatsTable> Stats { get; set; }
+        public DbSet<Clients> Clients { get; set; }
 
-        public DbSet<ClientGroupsTable> ClientGroups { get; set; }
+        public DbSet<SettingGroups> SettingGroups { get; set; }
 
-        public DbSet<ClientsTable> Clients { get; set; }
+        public DbSet<BackupDestinationPath> BackupDestinations { get; set; }
 
-        public DbSet<SettingGroupsTable> SettingGroups { get; set; }
+        public DbSet<BackupSourcePath> BackupSources { get; set; }
 
-        public DbSet<BackupDestinationPathTable> BackupDestinations { get; set; }
+        public DbSet<Schedulers> Schedulers { get; set; }
 
-        public DbSet<BackupSourcePathTable> BackupSources { get; set; }
+        public DbSet<Administrators> Administrators { get; set; }
 
-        public DbSet<SchedulersTable> Schedulers { get; set; }
-
-        public DbSet<AdministratorsTable> Administrators { get; set; }
-
-        public DbSet<SettingsTable> Settings { get; set; }
+        public DbSet<AdminSettings> Settings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_ganzwohltadeas_db1;user=ganzwohltadeas;password=Projekt123;SslMode=none");
+            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_musildavid_db1;user=musildavid;password=Projekt123;SslMode=none");
         }
     }
 }

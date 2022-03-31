@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("settings")]
-    public class SettingsTable
+    public class AdminSettings
     {
         [Column("id")]
-        public virtual List<AdministratorsTable> Id { get; set; }
+        public int Id { get; set; }        
 
         [Column("email")]
         public string Email { get; set; }

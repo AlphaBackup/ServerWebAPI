@@ -10,25 +10,25 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class SettingGroupsController : ControllerBase
+    public class BackupSettingGroupsController : ControllerBase
     {
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<SettingGroupsTable> Get()
+        public List<SettingGroups> Get()
         {
             return this.context.SettingGroups.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public SettingGroupsTable Get(int id)
+        public SettingGroups Get(int id)
         {
             return this.context.SettingGroups.Find(id);
         }
 
         [HttpPost]
-        public SettingGroupsTable Create(SettingGroupsTable client)
+        public SettingGroups Create(SettingGroups client)
         {
             this.context.SettingGroups.Add(client);
             this.context.SaveChanges();
@@ -38,9 +38,9 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, SettingGroupsTable client)
+        public void Update(int id, SettingGroups client)
         {
-            SettingGroupsTable db = this.context.SettingGroups.Find(id);
+            SettingGroups db = this.context.SettingGroups.Find(id);
 
             db.Name = client.Name;
             db.Activated = client.Activated;
@@ -48,6 +48,11 @@ namespace WebApplication1.Controllers
             db.BackupFormat = client.BackupFormat;
             db.BackupLimit = client.BackupLimit;
             db.BackupPackageLimit = client.BackupPackageLimit;
+
+            db.BackupSourcePaths = client.BackupSourcePaths;
+            db.BackupDestinationPaths = client.BackupDestinationPaths;
+            db.Schedulers = client.Schedulers;
+            db.ClientGroups = client.ClientGroups;
 
             this.context.SaveChanges();
             //return db;
@@ -57,7 +62,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            SettingGroupsTable client = this.context.SettingGroups.Find(id);
+            SettingGroups client = this.context.SettingGroups.Find(id);
             this.context.SettingGroups.Remove(client);
             this.context.SaveChanges();
         }

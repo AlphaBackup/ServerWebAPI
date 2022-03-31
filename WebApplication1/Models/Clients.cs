@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("administrators")]
-    public class AdministratorsTable
+    [Table("clients")]
+    public class Clients
     {
         [Column("id")]
         public int Id { get; set; }
@@ -16,7 +16,13 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("password")]
-        public string Activated { get; set; }
+        [Column("activated")]
+        public int Activated { get; set; }
+
+        [Column("ip_address")]
+        public string Ip { get; set; }
+
+        [Column("mac_address")]
+        public string MacAddress { get; set; }
     }
 }

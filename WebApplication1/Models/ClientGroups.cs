@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("backup_source_path")]
-    public class BackupSourcePathTable
+    [Table("client_groups")]
+    public class ClientGroups
     {
         [Column("id")]
         public int Id { get; set; }
@@ -16,10 +16,11 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("path")]
-        public string Path { get; set; }
+        ////[Column("client_id")]
+        //public virtual List<Clients> Clients { get; set; }
 
-        [Column("setting_group_id")]
-        public virtual List<SettingGroupsTable> SettingGroupId { get; set; }
+        ////[Column("setting_group_id")]
+        public virtual List<Stats> Stats { get; set; }
+        public virtual List<Clients> Clients { get; set; }
     }
 }

@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<ClientGroupsTable> Get()
+        public List<ClientGroups> Get()
         {
             return this.context.ClientGroups.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public ClientGroupsTable Get(int id)
+        public ClientGroups Get(int id)
         {
             return this.context.ClientGroups.Find(id);
         }
 
         [HttpPost]
-        public ClientGroupsTable Create(ClientGroupsTable client)
+        public ClientGroups Create(ClientGroups client)
         {
             this.context.ClientGroups.Add(client);
             this.context.SaveChanges();
@@ -38,12 +38,14 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, ClientGroupsTable client)
+        public void Update(int id, ClientGroups client)
         {
-            ClientGroupsTable db = this.context.ClientGroups.Find(id);
+            ClientGroups db = this.context.ClientGroups.Find(id);
 
-            db.ClientId = client.ClientId;
-            db.SettingGroupId = client.SettingGroupId;
+            db.Stats = client.Stats;
+            db.Clients = client.Clients;              
+            //db.Clients = client.Clients;
+            //db.Stats = client.Stats;
 
             this.context.SaveChanges();
             //return db;
@@ -53,7 +55,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            ClientGroupsTable client = this.context.ClientGroups.Find(id);
+            ClientGroups client = this.context.ClientGroups.Find(id);
             this.context.ClientGroups.Remove(client);
             this.context.SaveChanges();
         }
