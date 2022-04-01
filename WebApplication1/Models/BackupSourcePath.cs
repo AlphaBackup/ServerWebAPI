@@ -19,7 +19,7 @@ namespace WebApplication1.Models
         [Column("path")]
         public string Path { get; set; }
 
-        //[Column("setting_group_id")]
-        //public int SettingGroupId { get; set; }
+        [ForeignKey("setting_group_id")]
+        public virtual BackupSettings BackupSettings { get; set; }
     }
 }

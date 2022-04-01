@@ -8,13 +8,10 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("schedulers")]
-    public class Schedulers
+    public class Schedule
     {
         [Column("id")]
         public int Id { get; set; }
-
-        //[Column("setting_group_id")]
-        //public int SettingGroupId { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
@@ -30,5 +27,8 @@ namespace WebApplication1.Models
 
         [Column("month")]
         public int Month { get; set; }
+
+        [ForeignKey("setting_group_id")]
+        public virtual BackupSettings BackupSettings { get; set; }
     }
 }

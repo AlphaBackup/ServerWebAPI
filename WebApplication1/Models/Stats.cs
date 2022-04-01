@@ -13,9 +13,6 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        //[Column("group_id")]
-        //public int GroupId { get; set; }
-
         [Column("date")]
         public DateTime Date { get; set; }
 
@@ -25,7 +22,7 @@ namespace WebApplication1.Models
         [Column("state")]
         public string State { get; set; }
 
-        //[Column("group_id")]
-        //public virtual List<ClientGroups> ClientGroups { get; set; }
+        [ForeignKey("group_id")]
+        public virtual Group Group { get; set; }
     }
 }

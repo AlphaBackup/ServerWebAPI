@@ -44,6 +44,7 @@ namespace WebApplication1.Controllers
 
             db.Name = client.Name;
             db.Path = client.Path;
+            db.BackupSettings = client.BackupSettings;            
 
             this.context.SaveChanges();
             //return db;

@@ -18,5 +18,8 @@ namespace WebApplication1.Models
 
         [Column("language")]
         public string Language { get; set; }
+
+        [ForeignKey("admin_id")]
+        public virtual Administrator Administrator { get; set; }
     }
 }

@@ -44,6 +44,7 @@ namespace WebApplication1.Controllers
 
             db.Email = client.Email;
             db.Language = client.Language;
+            db.Administrator = client.Administrator;
 
             this.context.SaveChanges();
             //return db;

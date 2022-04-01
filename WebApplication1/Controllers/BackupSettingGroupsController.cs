@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<SettingGroups> Get()
+        public List<BackupSettings> Get()
         {
             return this.context.SettingGroups.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public SettingGroups Get(int id)
+        public BackupSettings Get(int id)
         {
             return this.context.SettingGroups.Find(id);
         }
 
         [HttpPost]
-        public SettingGroups Create(SettingGroups client)
+        public BackupSettings Create(BackupSettings client)
         {
             this.context.SettingGroups.Add(client);
             this.context.SaveChanges();
@@ -38,9 +38,9 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, SettingGroups client)
+        public void Update(int id, BackupSettings client)
         {
-            SettingGroups db = this.context.SettingGroups.Find(id);
+            BackupSettings db = this.context.SettingGroups.Find(id);
 
             db.Name = client.Name;
             db.Activated = client.Activated;
@@ -52,7 +52,7 @@ namespace WebApplication1.Controllers
             db.BackupSourcePaths = client.BackupSourcePaths;
             db.BackupDestinationPaths = client.BackupDestinationPaths;
             db.Schedulers = client.Schedulers;
-            db.ClientGroups = client.ClientGroups;
+            db.Groups = client.Groups;            
 
             this.context.SaveChanges();
             //return db;
@@ -62,7 +62,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            SettingGroups client = this.context.SettingGroups.Find(id);
+            BackupSettings client = this.context.SettingGroups.Find(id);
             this.context.SettingGroups.Remove(client);
             this.context.SaveChanges();
         }

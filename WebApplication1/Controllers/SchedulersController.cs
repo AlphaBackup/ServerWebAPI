@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<Schedulers> Get()
+        public List<Schedule> Get()
         {
             return this.context.Schedulers.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Schedulers Get(int id)
+        public Schedule Get(int id)
         {
             return this.context.Schedulers.Find(id);
         }
 
         [HttpPost]
-        public Schedulers Create(Schedulers client)
+        public Schedule Create(Schedule client)
         {
             this.context.Schedulers.Add(client);
             this.context.SaveChanges();
@@ -38,25 +38,25 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, Schedulers client)
+        public void Update(int id, Schedule client)
         {
-            Schedulers db = this.context.Schedulers.Find(id);
+            Schedule db = this.context.Schedulers.Find(id);
 
             db.Name = client.Name;
             db.Time = client.Time;
             db.DayOfWeek = client.DayOfWeek;
             db.DayOfMonth = client.DayOfMonth;
             db.Month = client.Month;
+            db.BackupSettings = client.BackupSettings;
 
             this.context.SaveChanges();
-            //return db;
         }
 
         [HttpDelete]
         [Route("{id}")]
         public void Delete(int id)
         {
-            Schedulers client = this.context.Schedulers.Find(id);
+            Schedule client = this.context.Schedulers.Find(id);
             this.context.Schedulers.Remove(client);
             this.context.SaveChanges();
         }

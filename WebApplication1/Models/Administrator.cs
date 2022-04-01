@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("client_groups")]
-    public class ClientGroups
+    [Table("administrators")]
+    public class Administrator
     {
         [Column("id")]
         public int Id { get; set; }
@@ -16,11 +16,8 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
-        ////[Column("client_id")]
-        //public virtual List<Clients> Clients { get; set; }
-
-        ////[Column("setting_group_id")]
-        public virtual List<Stats> Stats { get; set; }
-        public virtual List<Clients> Clients { get; set; }
+        [Column("password")]
+        public string Password { get; set; }
+        public virtual List<AdminSettings> Settings { get; set; }
     }
 }

@@ -48,6 +48,7 @@ namespace WebApplication1.Controllers
             db.Ip = client.Ip;
             db.Username = client.Username;
             db.Password = client.Password;            
+            db.BackupSettings = client.BackupSettings;
 
             this.context.SaveChanges();
             //return db;

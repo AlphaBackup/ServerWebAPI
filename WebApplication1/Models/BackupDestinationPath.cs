@@ -31,7 +31,7 @@ namespace WebApplication1.Models
         [Column("password")]
         public string Password { get; set; }
 
-        //[Column("setting_group_id")]
-        //public int SettingGroupId { get; set; }
+        [ForeignKey("setting_group_id")]
+        public virtual BackupSettings BackupSettings { get; set; }
     }
 }

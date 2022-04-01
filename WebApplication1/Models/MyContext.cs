@@ -11,19 +11,19 @@ namespace WebApplication1.Models
     {
         public DbSet<Stats> Stats { get; set; }
 
-        public DbSet<ClientGroups> ClientGroups { get; set; }
+        public DbSet<Group> ClientGroups { get; set; }
 
-        public DbSet<Clients> Clients { get; set; }
+        public DbSet<Client> Clients { get; set; }
 
-        public DbSet<SettingGroups> SettingGroups { get; set; }
+        public DbSet<BackupSettings> SettingGroups { get; set; }
 
         public DbSet<BackupDestinationPath> BackupDestinations { get; set; }
 
         public DbSet<BackupSourcePath> BackupSources { get; set; }
 
-        public DbSet<Schedulers> Schedulers { get; set; }
+        public DbSet<Schedule> Schedulers { get; set; }
 
-        public DbSet<Administrators> Administrators { get; set; }
+        public DbSet<Administrator> Administrators { get; set; }
 
         public DbSet<AdminSettings> Settings { get; set; }
 

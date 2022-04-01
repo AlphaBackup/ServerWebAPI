@@ -45,9 +45,9 @@ namespace WebApplication1.Controllers
             db.Date = client.Date;
             db.BackupFileAmount = client.BackupFileAmount;
             db.State = client.State;
+            db.Group = client.Group;            
 
             this.context.SaveChanges();
-            //return db;
         }
 
         [HttpDelete]

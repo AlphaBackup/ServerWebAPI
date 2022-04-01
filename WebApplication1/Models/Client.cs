@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace WebApplication1.Models
 {
     [Table("clients")]
-    public class Clients
+    public class Client
     {
         [Column("id")]
         public int Id { get; set; }
@@ -24,5 +24,8 @@ namespace WebApplication1.Models
 
         [Column("mac_address")]
         public string MacAddress { get; set; }
+
+        [ForeignKey("group_id")]
+        public virtual Group Group { get; set; }
     }
 }
