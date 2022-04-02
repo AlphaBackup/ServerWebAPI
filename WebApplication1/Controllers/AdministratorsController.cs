@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, Administrator client)
+        public Administrator Update(int id, Administrator client)
         {
             Administrator db = this.context.Administrators.Find(id);
 
@@ -47,7 +47,8 @@ namespace WebApplication1.Controllers
             db.Settings = client.Settings;           
 
             this.context.SaveChanges();
-            //return db;
+
+            return db;
         }
 
         [HttpDelete]
