@@ -1,3 +1,4 @@
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -19,6 +20,10 @@ namespace WebApplication1.Models
         [Column("language")]
         public string Language { get; set; }
 
+        [Column("admin_id")]
+        public int Admin_id { get; set; }
+
+        [JsonIgnore]
         [ForeignKey("admin_id")]
         public virtual Administrator Administrator { get; set; }
     }
