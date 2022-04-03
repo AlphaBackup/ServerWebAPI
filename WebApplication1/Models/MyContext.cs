@@ -30,7 +30,7 @@ namespace WebApplication1.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_musildavid_db1;user=musildavid;password=Projekt123;SslMode=none");
+            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_dudabohdan_db1;user=dudabohdan;password=123456;SslMode=none");
         }
     }
 }
