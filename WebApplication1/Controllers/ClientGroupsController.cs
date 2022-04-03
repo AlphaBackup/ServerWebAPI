@@ -17,20 +17,20 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public List<Group> Get()
         {
-            return this.context.ClientGroups.ToList();
+            return this.context.Groups.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
         public Group Get(int id)
         {
-            return this.context.ClientGroups.Find(id);
+            return this.context.Groups.Find(id);
         }
 
         [HttpPost]
         public Group Create(Group client)
         {
-            this.context.ClientGroups.Add(client);
+            this.context.Groups.Add(client);
             this.context.SaveChanges();
 
             return client;
@@ -40,10 +40,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Update(int id, Group client)
         {
-            Group db = this.context.ClientGroups.Find(id);
-
-            db.Stats = client.Stats;
-            db.Clients = client.Clients;              
+            Group db = this.context.Groups.Find(id);
             db.BackupSettings = client.BackupSettings;            
 
             this.context.SaveChanges();
@@ -53,8 +50,8 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            Group client = this.context.ClientGroups.Find(id);
-            this.context.ClientGroups.Remove(client);
+            Group client = this.context.Groups.Find(id);
+            this.context.Groups.Remove(client);
             this.context.SaveChanges();
         }
     }

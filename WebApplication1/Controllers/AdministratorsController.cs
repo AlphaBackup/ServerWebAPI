@@ -44,7 +44,6 @@ namespace WebApplication1.Controllers
 
             db.Name = client.Name;
             db.Password = client.Password;
-            db.Settings = client.Settings;           
 
             this.context.SaveChanges();
 
