@@ -20,8 +20,11 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
-        [Column("time")]
-        public int Time { get; set; }
+        [Column("minute")]
+        public int Minute { get; set; }
+
+        [Column("hour")]
+        public int Hour { get; set; }
 
         [ForeignKey("setting_id")]
         public virtual Setting BackupSettings { get; set; }

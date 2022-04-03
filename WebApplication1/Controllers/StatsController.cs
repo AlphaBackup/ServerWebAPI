@@ -1,10 +1,8 @@
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using WebApplication1.Models;
+using WebApplication1.DataTransferObjects;
 
 namespace WebApplication1.Controllers
 {
@@ -15,16 +13,35 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<Stats> Get()
+        public List<StatsInfo> Get()
         {
-            return this.context.Stats.ToList();
+            return this.context.Stats.Select(
+                s => new StatsInfo
+                {
+                    Id = s.Id,
+                    BackupFileAmount = s.BackupFileAmount,
+                    Date = s.Date,
+                    State = s.State,
+                    GroupName = s.Group.Name,
+                    UserName = s.User.Name
+                }).ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Stats Get(int id)
+        public StatsInfo Get(int id)
         {
-            return this.context.Stats.Find(id);
+            Stats stats = this.context.Stats.Find(id);
+            
+            return new StatsInfo
+            {
+                Id = stats.Id,
+                BackupFileAmount = stats.BackupFileAmount,
+                Date = stats.Date,
+                State = stats.State,
+                GroupName = stats.Group == null ? null : stats.Group.Name,
+                UserName = stats.User == null ? null : stats.User.Name
+            };
         }
 
         [HttpPost]

@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Collections.Generic;
 
 namespace WebApplication1.Models
 {
@@ -20,7 +21,10 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
-        [ForeignKey("group_id")]
-        public virtual Group Group { get; set; }
+        [ForeignKey("setting_id")]
+        public virtual Setting? Setting { get; set; }
+
+        public virtual List<Group> Groups { get; set; }
+
     }
 }

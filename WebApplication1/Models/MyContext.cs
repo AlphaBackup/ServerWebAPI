@@ -22,8 +22,15 @@ namespace WebApplication1.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseSnakeCaseNamingConvention();
             optionsBuilder.UseLazyLoadingProxies();
             optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_dudabohdan_db1;user=dudabohdan;password=123456;SslMode=none");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Group>()
+                        .HasMany<User>(g => g.Users)
+                        .WithMany(u => u.Groups);
         }
     }
 }

@@ -20,5 +20,8 @@ namespace WebApplication1.Models
 
         [ForeignKey("group_id")]
         public virtual Group Group { get; set; }
+
+        [ForeignKey("user_id")]
+        public virtual User User { get; set; }
     }
 }
