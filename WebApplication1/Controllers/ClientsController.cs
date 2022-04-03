@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<Client> Get()
+        public List<User> Get()
         {
             return this.context.Clients.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Client Get(int id)
+        public User Get(int id)
         {
             return this.context.Clients.Find(id);
         }
 
         [HttpPost]
-        public Client Create(Client client)
+        public User Create(User client)
         {
             this.context.Clients.Add(client);
             this.context.SaveChanges();
@@ -38,9 +38,9 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, Client client)
+        public void Update(int id, User client)
         {
-            Client db = this.context.Clients.Find(id);
+            User db = this.context.Clients.Find(id);
 
             db.Name = client.Name;
             db.Activated = client.Activated;
@@ -56,7 +56,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            Client client = this.context.Clients.Find(id);
+            User client = this.context.Clients.Find(id);
             this.context.Clients.Remove(client);
             this.context.SaveChanges();
         }

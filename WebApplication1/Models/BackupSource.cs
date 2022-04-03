@@ -7,8 +7,8 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("backup_source_path")]
-    public class BackupSourcePath
+    [Table("backup_source")]
+    public class BackupSource
     {
         [Column("id")]
         public int Id { get; set; }
@@ -19,7 +19,7 @@ namespace WebApplication1.Models
         [Column("path")]
         public string Path { get; set; }
 
-        [ForeignKey("setting_group_id")]
-        public virtual BackupSettings BackupSettings { get; set; }
+        [ForeignKey("setting_id")]
+        public virtual Setting BackupSettings { get; set; }
     }
 }

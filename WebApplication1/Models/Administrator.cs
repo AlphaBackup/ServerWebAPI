@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("administrators")]
+    [Table("administrator")]
     public class Administrator
     {
         [Column("id")]
@@ -16,8 +16,11 @@ namespace WebApplication1.Models
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("email")]
+        public string Email { get; set; }
+
         [Column("password")]
         public string Password { get; set; }
-        public virtual List<AdminSettings> Settings { get; set; }
+     
     }
 }

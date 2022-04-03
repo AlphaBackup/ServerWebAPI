@@ -11,21 +11,19 @@ namespace WebApplication1.Models
     {
         public DbSet<Stats> Stats { get; set; }
 
-        public DbSet<Group> ClientGroups { get; set; }
+        public DbSet<Group> Groups { get; set; }
 
-        public DbSet<Client> Clients { get; set; }
+        public DbSet<User> Users { get; set; }
 
-        public DbSet<BackupSettings> SettingGroups { get; set; }
+        public DbSet<Setting> Settings { get; set; }
 
-        public DbSet<BackupDestinationPath> BackupDestinations { get; set; }
+        public DbSet<BackupDestination> BackupDestinations { get; set; }
 
-        public DbSet<BackupSourcePath> BackupSources { get; set; }
+        public DbSet<BackupSource> BackupSources { get; set; }
 
-        public DbSet<Schedule> Schedulers { get; set; }
+        public DbSet<Scheduler> Schedulers { get; set; }
 
         public DbSet<Administrator> Administrators { get; set; }
-
-        public DbSet<AdminSettings> Settings { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

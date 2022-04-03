@@ -15,20 +15,20 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<BackupSourcePath> Get()
+        public List<BackupSource> Get()
         {
             return this.context.BackupSources.ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public BackupSourcePath Get(int id)
+        public BackupSource Get(int id)
         {
             return this.context.BackupSources.Find(id);
         }
 
         [HttpPost]
-        public BackupSourcePath Create(BackupSourcePath client)
+        public BackupSource Create(BackupSource client)
         {
             this.context.BackupSources.Add(client);
             this.context.SaveChanges();
@@ -38,9 +38,9 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, BackupSourcePath client)
+        public void Update(int id, BackupSource client)
         {
-            BackupSourcePath db = this.context.BackupSources.Find(id);
+            BackupSource db = this.context.BackupSources.Find(id);
 
             db.Name = client.Name;
             db.Path = client.Path;
@@ -54,7 +54,7 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public void Delete(int id)
         {
-            BackupSourcePath client = this.context.BackupSources.Find(id);
+            BackupSource client = this.context.BackupSources.Find(id);
             this.context.BackupSources.Remove(client);
             this.context.SaveChanges();
         }

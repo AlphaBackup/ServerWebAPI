@@ -13,12 +13,12 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("backup_file_amount")]
+        public int BackupFileAmount { get; set; }
+
         [Column("date")]
         public DateTime Date { get; set; }
 
-        [Column("backup_file_amount")]
-        public int BackupFileAmount { get; set; }
-         
         [Column("state")]
         public string State { get; set; }
 

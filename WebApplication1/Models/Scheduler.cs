@@ -7,11 +7,20 @@ using System.Threading.Tasks;
 
 namespace WebApplication1.Models
 {
-    [Table("schedulers")]
-    public class Schedule
+    [Table("scheduler")]
+    public class Scheduler
     {
         [Column("id")]
         public int Id { get; set; }
+
+        [Column("day_of_month")]
+        public int DayOfMonth { get; set; }
+
+        [Column("day_of_week")]
+        public int DayOfWeek { get; set; }
+
+        [Column("month")]
+        public int Month { get; set; }
 
         [Column("name")]
         public string Name { get; set; }
@@ -19,16 +28,7 @@ namespace WebApplication1.Models
         [Column("time")]
         public int Time { get; set; }
 
-        [Column("day_of_week")]
-        public int DayOfWeek { get; set; }
-
-        [Column("day_of_month")]
-        public int DayOfMonth { get; set; }
-
-        [Column("month")]
-        public int Month { get; set; }
-
-        [ForeignKey("setting_group_id")]
-        public virtual BackupSettings BackupSettings { get; set; }
+        [ForeignKey("setting_id")]
+        public virtual Setting BackupSettings { get; set; }
     }
 }
