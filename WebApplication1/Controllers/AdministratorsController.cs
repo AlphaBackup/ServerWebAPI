@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using WebApplication1.DataTransferObjects;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
@@ -12,16 +13,21 @@ namespace WebApplication1.Controllers
         private MyContext context = new MyContext();
 
         [HttpGet]
-        public List<Administrator> Get()
+        public List<AdministratorInfo> Get()
         {
-            return this.context.Administrators.ToList();
+            return this.context.Administrators
+                .Select(x => new AdministratorInfo() { Id = x.Id, Name = x.Name, Email = x.Email })
+                .ToList();
         }
 
         [HttpGet]
         [Route("{id}")]
-        public Administrator Get(int id)
+        public AdministratorInfo Get(int id)
         {
-            return this.context.Administrators.Find(id);
+            Administrator a = this.context.Administrators.Find(id);
+
+            return new AdministratorInfo() { Id = a.Id, Name = a.Name, Email = a.Email };
+
         }
 
         [HttpPost]
