@@ -1,5 +1,6 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace WebApplication1.Models
 {
@@ -9,8 +10,14 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("name")]
+        public string Name { get; set; }
+
         [Column("activated")]
         public int Activated { get; set; }
+
+        [Column("status")]
+        public int Status { get; set; }
 
         [Column("ip_address")]
         public string IpAddress { get; set; }
@@ -18,10 +25,7 @@ namespace WebApplication1.Models
         [Column("mac_address")]
         public string MacAddress { get; set; }
 
-        [Column("name")]
-        public string Name { get; set; }
-
-        [ForeignKey("setting_id")]
+        [ForeignKey("setting_id")]       
         public virtual Setting? Setting { get; set; }
 
         public virtual List<Group> Groups { get; set; }

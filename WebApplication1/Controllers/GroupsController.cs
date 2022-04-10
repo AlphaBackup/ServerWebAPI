@@ -30,6 +30,9 @@ namespace WebApplication1.Controllers
         [Route("{id}")]
         public GroupDetailInfo Get(int id)
         {
+            List<User> users = new List<User>();
+            this.context.Users.ToList().ForEach(u => users.Add(u));
+
             Group group = this.context.Groups.Find(id);
 
             return new GroupDetailInfo
@@ -38,7 +41,15 @@ namespace WebApplication1.Controllers
                 Activated = group.Activated,
                 Name = group.Name,
                 Setting = group.Setting,
-                Users = group.Users.Select(
+                UsersToRemove = group.Users.Select(
+                u => new UserInGroupInfo
+                {
+                    Id = u.Id,
+                    Name = u.Name,
+                }).ToList(),
+                UsersToAdd = users
+                .Where(u => group.Users.All(gu => gu.Id != u.Id))
+                .Select(
                 u => new UserInGroupInfo
                 {
                     Id = u.Id,
@@ -49,10 +60,10 @@ namespace WebApplication1.Controllers
         }
 
         [HttpPost]
-        public GroupInfo Create(string name)
+        public GroupInfo Create(Group group)
         {
-            Group group = new Group();
-            group.Name = name;
+            //Group group = new Group();
+            //group.Name = name;
             this.context.Groups.Add(group);
             this.context.SaveChanges();
 
@@ -66,13 +77,17 @@ namespace WebApplication1.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public void Update(int id, Group client)
+        public void Update(int id, GroupDetailInfo client)
         {
+            List<User> users = new List<User>();
+            this.context.Users.ToList().ForEach(u => users.Add(u));
+
             Group db = this.context.Groups.Find(id);
 
             db.Setting = client.Setting;
             db.Name = client.Name;
             db.Activated = client.Activated;
+            db.Users = users.Where(u => client.UsersToRemove.Any(uInfo => uInfo.Id == u.Id)).ToList();
             
             this.context.SaveChanges();
         }

@@ -8,8 +8,8 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("ip")]
-        public string Ip { get; set; }
+        [Column("ipAddress")]
+        public string IpAddress { get; set; }
 
         [Column("name")]
         public string Name { get; set; }

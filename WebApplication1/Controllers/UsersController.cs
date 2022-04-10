@@ -22,6 +22,7 @@ namespace WebApplication1.Controllers
                     Activated = u.Activated,
                     IpAddress = u.IpAddress,
                     Name = u.Name,
+                    Status = u.Status
                 }).ToList();
         }
 
