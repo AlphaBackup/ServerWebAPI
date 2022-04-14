@@ -24,7 +24,7 @@ namespace WebApplication1.Models
         {
             optionsBuilder.UseSnakeCaseNamingConvention();
             optionsBuilder.UseLazyLoadingProxies();
-            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_dudabohdan_db1;user=dudabohdan;password=123456;SslMode=none");
+            optionsBuilder.UseMySQL("server=mysqlstudenti.litv.sssvt.cz;database=3c1_dudabohdan_db2;user=dudabohdan;password=123456;SslMode=none");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

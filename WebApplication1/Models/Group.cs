@@ -16,7 +16,7 @@ namespace WebApplication1.Models
         public string Name { get; set; }
 
         [ForeignKey("setting_id")]
-        public virtual Setting? Setting { get; set; }
+        public virtual Setting Setting { get; set; }
 
         public virtual List<User> Users { get; set; }
 

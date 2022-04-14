@@ -48,6 +48,8 @@ namespace WebApplication1.Controllers
         {
             User db = this.context.Users.Find(id);
 
+            client.Setting.Id = 0;
+
             db.Name = client.Name;
             db.Activated = client.Activated;
             db.IpAddress = client.IpAddress;

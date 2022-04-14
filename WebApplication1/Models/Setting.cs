@@ -9,16 +9,16 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("backup_format")]
+        [Column("backupFormat")]
         public int BackupFormat { get; set; }
 
-        [Column("backup_limit")]
+        [Column("backupLimit")]
         public int BackupLimit { get; set; }
 
-        [Column("backup_package_limit")]
+        [Column("backupPackageLimit")]
         public int BackupPackageLimit { get; set; }
 
-        [Column("backup_type")]
+        [Column("backupType")]
         public int BackupType { get; set; }
 
         public virtual List<BackupSource> BackupSources { get; set; }

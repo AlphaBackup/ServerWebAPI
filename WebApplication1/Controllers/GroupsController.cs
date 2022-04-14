@@ -78,17 +78,25 @@ namespace WebApplication1.Controllers
         [HttpPut]
         [Route("{id}")]
         public void Update(int id, GroupDetailInfo client)
-        {
+        {            
             List<User> users = new List<User>();
             this.context.Users.ToList().ForEach(u => users.Add(u));
 
+            List<GroupUser> groups = this.context.GroupUsers.Where(x => x.Group.Id == client.Id).ToList();
+            this.context.GroupUsers.RemoveRange(groups);
+            this.context.SaveChanges(true);
+
             Group db = this.context.Groups.Find(id);
+            
+            client.Setting.Id = 0;
 
             db.Setting = client.Setting;
             db.Name = client.Name;
             db.Activated = client.Activated;
             db.Users = users.Where(u => client.UsersToRemove.Any(uInfo => uInfo.Id == u.Id)).ToList();
-            
+
+            this.context.Groups.Update(db);
+
             this.context.SaveChanges();
         }
 

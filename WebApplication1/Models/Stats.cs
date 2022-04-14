@@ -10,7 +10,7 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("backup_file_amount")]
+        [Column("backupFileAmount")]
         public int BackupFileAmount { get; set; }
 
         [Column("date")]

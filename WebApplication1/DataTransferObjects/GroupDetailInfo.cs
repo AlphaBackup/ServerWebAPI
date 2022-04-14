@@ -11,7 +11,7 @@ namespace WebApplication1.DataTransferObjects
 
         public string Name { get; set; }
 
-        public Setting? Setting { get; set; }
+        public Setting Setting { get; set; }
 
         public List<UserInGroupInfo> UsersToRemove { get; set; }
         public List<UserInGroupInfo> UsersToAdd { get; set; }

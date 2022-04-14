@@ -9,11 +9,11 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("day_of_month")]
-        public int DayOfMonth { get; set; }
+        [Column("dayMonth")]
+        public int DayMonth { get; set; }
 
-        [Column("day_of_week")]
-        public int DayOfWeek { get; set; }
+        [Column("dayWeek")]
+        public int DayWeek { get; set; }
 
         [Column("month")]
         public int Month { get; set; }

@@ -19,14 +19,14 @@ namespace WebApplication1.Models
         [Column("status")]
         public int Status { get; set; }
 
-        [Column("ip_address")]
+        [Column("ipAddress")]
         public string IpAddress { get; set; }
 
-        [Column("mac_address")]
+        [Column("macAddress")]
         public string MacAddress { get; set; }
 
         [ForeignKey("setting_id")]       
-        public virtual Setting? Setting { get; set; }
+        public virtual Setting Setting { get; set; }
 
         public virtual List<Group> Groups { get; set; }
 
