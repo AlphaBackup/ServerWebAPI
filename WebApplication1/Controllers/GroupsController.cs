@@ -9,6 +9,7 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Role = "admin")]
     public class GroupsController : ControllerBase
     {
         private MyContext context = new MyContext();
@@ -62,8 +63,6 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public GroupInfo Create(Group group)
         {
-            //Group group = new Group();
-            //group.Name = name;
             this.context.Groups.Add(group);
             this.context.SaveChanges();
 
@@ -81,10 +80,6 @@ namespace WebApplication1.Controllers
         {            
             List<User> users = new List<User>();
             this.context.Users.ToList().ForEach(u => users.Add(u));
-
-            List<GroupUser> groups = this.context.GroupUsers.Where(x => x.Group.Id == client.Id).ToList();
-            this.context.GroupUsers.RemoveRange(groups);
-            this.context.SaveChanges(true);
 
             Group db = this.context.Groups.Find(id);
             

@@ -8,6 +8,7 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    //[Authorize(Role = "admin")]
     public class UsersController : ControllerBase
     {
         private MyContext context = new MyContext();

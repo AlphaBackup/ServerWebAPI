@@ -45,9 +45,15 @@ namespace WebApplication1.Controllers
         {
             Administrator db = this.context.Administrators.Find(id);
 
-            db.Name = client.Name;
-            db.Password = client.Password;
-            db.Email = client.Email;
+            if (client.Password == "")
+            {
+                db.Name = client.Name;
+                db.Email = client.Email;
+            }
+            else if (client.Email == "")
+            {
+                db.Password = client.Password;
+            }
 
             this.context.SaveChanges();
 
