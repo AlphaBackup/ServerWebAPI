@@ -9,23 +9,23 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
-        [Column("dayMonth")]
-        public int DayMonth { get; set; }
-
-        [Column("dayWeek")]
-        public int DayWeek { get; set; }
-
-        [Column("month")]
-        public int Month { get; set; }
-
         [Column("name")]
         public string Name { get; set; }
 
+        [Column("dayMonth")]
+        public string DayMonth { get; set; }
+
+        [Column("dayWeek")]
+        public string DayWeek { get; set; }
+
+        [Column("month")]
+        public string Month { get; set; }
+
         [Column("minute")]
-        public int Minute { get; set; }
+        public string Minute { get; set; }
 
         [Column("hour")]
-        public int Hour { get; set; }
+        public string Hour { get; set; }
 
         [ForeignKey("setting_id")]
         public virtual Setting BackupSettings { get; set; }

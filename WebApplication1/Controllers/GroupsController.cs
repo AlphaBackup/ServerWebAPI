@@ -88,7 +88,8 @@ namespace WebApplication1.Controllers
             db.Setting = client.Setting;
             db.Name = client.Name;
             db.Activated = client.Activated;
-            db.Users = users.Where(u => client.UsersToRemove.Any(uInfo => uInfo.Id == u.Id)).ToList();
+            db.Users.Clear();
+            db.Users = users.Where(u => client.UsersToRemove.Any(uInfo => uInfo.Id == u.Id)).ToList();            
 
             this.context.Groups.Update(db);
 

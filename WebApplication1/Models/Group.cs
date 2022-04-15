@@ -19,6 +19,5 @@ namespace WebApplication1.Models
         public virtual Setting Setting { get; set; }
 
         public virtual List<User> Users { get; set; }
-
     }
 }
