@@ -9,6 +9,9 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("activated")]
+        public int Activated { get; set; }
+
         [Column("backupFormat")]
         public int BackupFormat { get; set; }
 
