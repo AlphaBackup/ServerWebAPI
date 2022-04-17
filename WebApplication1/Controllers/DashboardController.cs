@@ -25,7 +25,7 @@ namespace WebApplication1.Controllers
                 .Where(s => s.Date.Date == DateTime.Today)
                 .Count();
             int backupsFailed = this.context.Stats
-                .Where(s => s.State == "failed")
+                .Where(s => s.State != "success")
                 .Count();
 
             return new DashboardInfo
