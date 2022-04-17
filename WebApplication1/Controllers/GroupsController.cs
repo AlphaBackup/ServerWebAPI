@@ -82,7 +82,7 @@ namespace WebApplication1.Controllers
             this.context.Users.ToList().ForEach(u => users.Add(u));
 
             Group db = this.context.Groups.Find(id);
-            
+
             client.Setting.Id = 0;
 
             db.Setting = client.Setting;
