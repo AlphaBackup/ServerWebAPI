@@ -9,7 +9,7 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Role = "admin")]
+    [Authorize(Role = "admin")]
     public class GroupsController : ControllerBase
     {
         private MyContext context = new MyContext();

@@ -27,7 +27,15 @@ namespace WebApplication1.Controllers
             Administrator a = this.context.Administrators.Find(id);
 
             return new AdministratorInfo() { Id = a.Id, Name = a.Name, Email = a.Email };
+        }
 
+        [HttpPost]
+        [Route("verify/{id}")]
+        public bool Get(int id, Credentials credentials)
+        {
+            Administrator a = this.context.Administrators.Find(id);
+
+            return credentials.Password == a.Password;
         }
 
         [HttpPost]
@@ -45,16 +53,20 @@ namespace WebApplication1.Controllers
         {
             Administrator db = this.context.Administrators.Find(id);
 
-            if (client.Password == "")
+            if (client.Name != string.Empty)
             {
                 db.Name = client.Name;
-                db.Email = client.Email;
             }
-            else if (client.Email == "")
+            if (client.Password != string.Empty)
             {
                 db.Password = client.Password;
             }
+            if (client.Email != string.Empty)
+            {
+                db.Email = client.Email;
+            }
 
+            this.context.Administrators.Update(db);
             this.context.SaveChanges();
 
             return db;
