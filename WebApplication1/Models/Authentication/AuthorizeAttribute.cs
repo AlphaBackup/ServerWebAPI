@@ -18,7 +18,7 @@ namespace WebApplication1
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            string token = context.HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
+            string token = context.HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();            
 
             if (!this.auth.VerifyToken(token))
             {

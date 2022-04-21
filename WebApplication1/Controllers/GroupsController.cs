@@ -96,6 +96,20 @@ namespace WebApplication1.Controllers
             this.context.SaveChanges();
         }
 
+        [HttpPut]
+        [Route("activate/{id}")]
+        public int Update(int id)
+        {
+            Group db = this.context.Groups.Find(id);
+            db.Activated = (db.Activated + 1) % 2;
+
+            this.context.Groups.Update(db);
+
+            this.context.SaveChanges();
+
+            return db.Activated;
+        }
+
         [HttpDelete]
         [Route("{id}")]
         public void Delete(int id)

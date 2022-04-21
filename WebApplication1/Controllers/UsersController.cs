@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Role = "admin")]
+    [Authorize(Role = "admin")]
     public class UsersController : ControllerBase
     {
         private MyContext context = new MyContext();
@@ -60,6 +60,20 @@ namespace WebApplication1.Controllers
             this.context.SaveChanges();
 
             return db;
+        }
+
+        [HttpPut]
+        [Route("activate/{id}")]
+        public int Update(int id)
+        {
+            User db = this.context.Users.Find(id);
+            db.Activated = (db.Activated + 1) % 2;
+
+            this.context.Users.Update(db);
+
+            this.context.SaveChanges();
+
+            return db.Activated;
         }
 
         [HttpDelete]
