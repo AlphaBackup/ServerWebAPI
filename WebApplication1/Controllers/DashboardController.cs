@@ -16,16 +16,21 @@ namespace WebApplication1.Controllers
         [HttpGet]
         public DashboardInfo Get()
         {
+            DateTime weekAgo = DateTime.Now.AddDays(-7);
+
             int activeUsers = this.context.Users
                 .Where(u => u.Activated == 1)
                 .Count();
             int totalUsers = this.context.Users.Count();
             int totalGroups = this.context.Groups.Count();
+            int backupsThisWeek = this.context.Stats
+                .Where(s => s.Date.Date >= weekAgo)
+                .Count();
             int backupsToday = this.context.Stats
                 .Where(s => s.Date.Date == DateTime.Today)
                 .Count();
             int backupsFailed = this.context.Stats
-                .Where(s => s.State != "success")
+                .Where(s => s.State.ToLower() != "success")
                 .Count();
 
             return new DashboardInfo
@@ -35,6 +40,7 @@ namespace WebApplication1.Controllers
                 TotalGroups = totalGroups,
                 BackupsToday = backupsToday,
                 BackupsFailed = backupsFailed,
+                BackupsThisWeek = backupsThisWeek
             };
 
         }

@@ -83,6 +83,9 @@ namespace WebApplication1.Controllers
 
             Group db = this.context.Groups.Find(id);
 
+            Setting s  = this.context.Settings.Find(client.Setting.Id);
+            this.context.Settings.Remove(s);
+
             client.Setting.Id = 0;
 
             db.Setting = client.Setting;

@@ -8,7 +8,7 @@ namespace WebApplication1.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize(Role = "admin")]
+    [Authorize(Role = "admin")]
     public class StatsController : ControllerBase
     {
         private MyContext context = new MyContext();
@@ -48,6 +48,12 @@ namespace WebApplication1.Controllers
         [HttpPost]
         public Stats Create(Stats client)
         {
+            Group g = client.Group == null ? null : this.context.Groups.Find(client.Group.Id);
+            User u = client.User == null ? null : this.context.Users.Find(client.User.Id);
+
+            client.Group = g;
+            client.User = u;
+
             this.context.Stats.Add(client);
             this.context.SaveChanges();
 

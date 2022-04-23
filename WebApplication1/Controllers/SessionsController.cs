@@ -28,5 +28,19 @@ namespace WebApplication1.Controllers
                 return new JsonResult("Invalid username or password") { StatusCode = StatusCodes.Status401Unauthorized };
             }
         }
+
+        [HttpPost]
+        [Route("extend")]
+        public JsonResult ExpirationExtend(Token token)
+        {
+            try
+            {
+                return new JsonResult(this.auth.ExpritaionExtend(token._Token));
+            }
+            catch
+            {
+                return new JsonResult("Invalid Token") { StatusCode = StatusCodes.Status401Unauthorized };
+            }
+        }
     }
 }

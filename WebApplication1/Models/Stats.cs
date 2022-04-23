@@ -19,10 +19,10 @@ namespace WebApplication1.Models
         [Column("state")]
         public string State { get; set; }
 
-        [ForeignKey("group_id")]
+        [Column("group_id")]
         public virtual Group Group { get; set; }
 
-        [ForeignKey("user_id")]
+        [Column("user_id")]
         public virtual User User { get; set; }
     }
 }
