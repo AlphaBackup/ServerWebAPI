@@ -25,7 +25,7 @@ namespace WebApplication1
             return JwtBuilder.Create()
                       .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
                       .WithSecret(SECRET)
-                      .AddClaim("exp", DateTimeOffset.UtcNow.AddSeconds(30).ToUnixTimeSeconds())
+                      .AddClaim("exp", DateTimeOffset.UtcNow.AddSeconds(300).ToUnixTimeSeconds())
                       .AddClaim("user_id", admin.Id)
                       .Encode();
         }
@@ -42,7 +42,7 @@ namespace WebApplication1
             return JwtBuilder.Create()
                       .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
                       .WithSecret(SECRET)
-                      .AddClaim("exp", DateTimeOffset.UtcNow.AddSeconds(30).ToUnixTimeSeconds())
+                      .AddClaim("exp", DateTimeOffset.UtcNow.AddSeconds(300).ToUnixTimeSeconds())
                       .AddClaim("user_id", myJwt.user_id)
                       .Encode();
         }

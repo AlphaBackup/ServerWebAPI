@@ -79,6 +79,13 @@ namespace WebApplication1.Controllers
         public void Delete(int id)
         {
             Stats client = this.context.Stats.Find(id);
+
+            Group g = client.Group == null ? null : this.context.Groups.Find(client.Group.Id);
+            User u = client.User == null ? null : this.context.Users.Find(client.User.Id);
+
+            client.Group = g;
+            client.User = u;
+
             this.context.Stats.Remove(client);
             this.context.SaveChanges();
         }
