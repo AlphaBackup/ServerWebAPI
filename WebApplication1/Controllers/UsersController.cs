@@ -49,6 +49,9 @@ namespace WebApplication1.Controllers
         {
             User db = this.context.Users.Find(id);
 
+            Setting s = this.context.Settings.Find(client.Setting.Id);
+            this.context.Settings.Remove(s);
+
             client.Setting.Id = 0;
 
             db.Name = client.Name;
