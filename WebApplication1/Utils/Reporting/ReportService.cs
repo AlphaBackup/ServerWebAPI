@@ -21,7 +21,6 @@ namespace WebApplication1.Utils.Reporting
                 this.manager = new ReportManager(cron_daemon);
             
             this.manager.Initialize();
-            //this.manager.SendReport("davidmusil777@seznam.cz", new List<Stats>());
             
             return Task.CompletedTask;
         }

@@ -8,6 +8,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebApplication1.Utils
 {
@@ -30,8 +31,27 @@ namespace WebApplication1.Utils
             this.cron = cron;
         }
 
-        public void SendReport(string email, List<Stats> stats, ReportPeriod period)
+        public void Initialize()
         {
+            this.cron.Stop();
+            this.cron.ClearJobs();
+
+            List<Administrator> administrators = this.context.Administrators.Where(a => a.Name != "Daemon" && a.ReportSettings.Activated == 1).ToList();
+
+            administrators.ToList().ForEach(a =>
+            {
+                ReportPeriod period = a.ReportSettings.ReportPeriod;
+                this.cron.AddJob(CronFormatTime(period),
+                                  () => SendReport(a.Email, RelevantTimeStatsList(this.context.Stats, period), period));
+            });
+
+            this.cron.AddJob("0 12,23 * * *", Initialize);
+
+            this.cron.Start();            
+        }
+
+        public void SendReport(string email, List<Stats> stats, ReportPeriod period)
+        {            
             using (ReportFile reportFile = new ReportFile(stats))
             {
                 using (MailMessage mailMessage = new MailMessage())
@@ -42,34 +62,12 @@ namespace WebApplication1.Utils
                     mailMessage.To.Add(email);                    
 
                     mailMessage.Attachments.Add(new Attachment(reportFile.FilePath));
-                    smtpClient.SendMailAsync(mailMessage).Wait();
+                    this.smtpClient.SendMailAsync(mailMessage).Wait();
                 };
             };
         }
-
-        public void Initialize()
-        {
-            this.cron.Stop();
-            this.cron.ClearJobs();
-
-            List<Administrator> administrators = new List<Administrator>();
-            List<Stats> stats = new List<Stats>();
-
-            administrators.AddRange(this.context.Administrators.Where(a => a.Name != "Daemon" && a.ReportSettings.Activated == 1));
-            stats.AddRange(this.context.Stats);
-
-
-            administrators.ForEach(a =>
-            {
-                ReportPeriod period = a.ReportSettings.ReportPeriod;
-                this.cron.AddJob(CronFormatTime(period),
-                                  () => SendReport(a.Email, RelevantTimeStatsList(stats, period), period));
-            });
-            this.cron.Start();
-            this.cron.AddJob("0 12,23 * * *", Initialize);
-        }
-
-        private List<Stats> RelevantTimeStatsList(List<Stats> stats, ReportPeriod period)
+        
+        private List<Stats> RelevantTimeStatsList(DbSet<Stats> stats, ReportPeriod period)
         {
             DateTime dateTime = DateTime.Now;
             dateTime = period == ReportPeriod.DAY 
@@ -87,7 +85,7 @@ namespace WebApplication1.Utils
                 ? "0 0 * * 0"
                 : "0 0 1 * *";*/
 
-            return "* * * * *";
+            return "*/3 * * * *";
         }
     }
 }

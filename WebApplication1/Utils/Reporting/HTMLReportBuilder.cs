@@ -52,7 +52,7 @@ namespace WebApplication1.Utils
                 return sb.ToString();
             }
 
-            sb.AppendLine(@$"<td>{(stat.Status == 0 ? "Success" : "Failure")}</td>");
+            sb.AppendLine(@$"<td>{(stat.Status == 1 ? "Success" : "Failure")}</td>");
             sb.AppendLine(@$"<td>{stat.State}</td>");
             sb.AppendLine(@$"<td>{stat.Date.ToShortDateString()}</td>");
 
