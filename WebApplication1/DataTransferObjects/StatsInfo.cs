@@ -8,6 +8,8 @@ namespace WebApplication1.DataTransferObjects
 
         public int BackupFileAmount { get; set; }
 
+        public int Status { get; set; }
+
         public DateTime Date { get; set; }
 
         public string State { get; set; }

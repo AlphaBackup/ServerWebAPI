@@ -7,7 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using WebApplication1.Models;
 
-namespace WebApplication1
+namespace WebApplication1.Models.Authentication
 {
     public class AuthorizeAttribute : Attribute, IAuthorizationFilter
     {
@@ -18,9 +18,9 @@ namespace WebApplication1
 
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            string token = context.HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();            
+            string token = context.HttpContext.Request.Headers["Authorization"].ToString().Split(' ').Last();
 
-            if (!this.auth.VerifyToken(token))
+            if (!auth.VerifyToken(token))
             {
                 context.Result = new JsonResult("authentication failed") { StatusCode = StatusCodes.Status401Unauthorized };
             }

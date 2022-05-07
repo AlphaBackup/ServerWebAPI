@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
 
@@ -17,6 +18,6 @@ namespace WebApplication1.Models
 
         [Column("password")]
         public string Password { get; set; }
-     
+        public virtual ReportSettings? ReportSettings { get; set; }
     }
 }

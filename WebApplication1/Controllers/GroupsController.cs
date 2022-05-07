@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
 using WebApplication1.DataTransferObjects;
-
+using WebApplication1.Models.Authentication;
 
 namespace WebApplication1.Controllers
 {
@@ -104,6 +104,7 @@ namespace WebApplication1.Controllers
         public int Update(int id)
         {
             Group db = this.context.Groups.Find(id);
+
             db.Activated = (db.Activated + 1) % 2;
 
             this.context.Groups.Update(db);

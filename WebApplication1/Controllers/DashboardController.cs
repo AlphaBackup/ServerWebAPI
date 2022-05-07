@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using WebApplication1.Models;
 using WebApplication1.DataTransferObjects;
+using WebApplication1.Models.Authentication;
 
 namespace WebApplication1.Controllers
 {
@@ -24,13 +25,13 @@ namespace WebApplication1.Controllers
             int totalUsers = this.context.Users.Count();
             int totalGroups = this.context.Groups.Count();
             int backupsThisWeek = this.context.Stats
-                .Where(s => s.Date.Date >= weekAgo)
+                .Where(s => s.Date >= weekAgo)
                 .Count();
             int backupsToday = this.context.Stats
-                .Where(s => s.Date.Date == DateTime.Today)
+                .Where(s => s.Date == DateTime.Today)
                 .Count();
             int backupsFailed = this.context.Stats
-                .Where(s => s.State.ToLower() != "success")
+                .Where(s => s.Status == 0)
                 .Count();
 
             return new DashboardInfo

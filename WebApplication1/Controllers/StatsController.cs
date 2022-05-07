@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
 using WebApplication1.DataTransferObjects;
+using WebApplication1.Models.Authentication;
 
 namespace WebApplication1.Controllers
 {
@@ -23,6 +24,7 @@ namespace WebApplication1.Controllers
                     BackupFileAmount = s.BackupFileAmount,
                     Date = s.Date,
                     State = s.State,
+                    Status = s.Status,
                     GroupName = s.Group.Name,
                     UserName = s.User.Name
                 }).ToList();
@@ -40,6 +42,7 @@ namespace WebApplication1.Controllers
                 BackupFileAmount = stats.BackupFileAmount,
                 Date = stats.Date,
                 State = stats.State,
+                Status = stats.Status,
                 GroupName = stats.Group == null ? null : stats.Group.Name,
                 UserName = stats.User == null ? null : stats.User.Name
             };
@@ -69,7 +72,8 @@ namespace WebApplication1.Controllers
             db.Date = client.Date;
             db.BackupFileAmount = client.BackupFileAmount;
             db.State = client.State;
-            db.Group = client.Group;            
+            db.Group = client.Group;      
+            db.Status = client.Status;
 
             this.context.SaveChanges();
         }

@@ -1,0 +1,23 @@
+<style>
+.main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    table{
+	margin-bottom: 20px;
+        max-width: 600px;
+    }
+
+    td,th{
+        width: 200px;
+        text-align: center;
+    }
+
+    table, tr, th, td {
+        border-collapse: collapse;
+        border: 1px solid black;
+    }
+</style>

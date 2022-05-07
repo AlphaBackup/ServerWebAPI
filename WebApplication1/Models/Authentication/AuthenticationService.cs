@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using WebApplication1.Models;
 
-namespace WebApplication1
+namespace WebApplication1.Models.Authentication
 {
     public class AuthenticationService
     {
@@ -17,7 +17,7 @@ namespace WebApplication1
 
         public string Authenticate(Credentials credentials)
         {
-            Administrator admin = this.context.Administrators.Where(x => x.Name == credentials.Login && x.Password == credentials.Password).FirstOrDefault();
+            Administrator admin = context.Administrators.Where(x => x.Name == credentials.Login && x.Password == credentials.Password).FirstOrDefault();
 
             if (admin == null)
                 throw new Exception("invalid user");
@@ -32,13 +32,13 @@ namespace WebApplication1
 
         public string ExpritaionExtend(string token)
         {
-            if (!this.VerifyToken(token))
+            if (!VerifyToken(token))
             {
                 throw new Exception("invalid token");
             }
 
             MyJwtToken myJwt = new JwtBuilder().Decode<MyJwtToken>(token);
-            
+
             return JwtBuilder.Create()
                       .WithAlgorithm(new HMACSHA256Algorithm()) // symmetric
                       .WithSecret(SECRET)

@@ -20,6 +20,8 @@ namespace WebApplication1.Models
 
         public DbSet<Administrator> Administrators { get; set; }
 
+        public DbSet<ReportSettings> ReportSettings { get; set; }
+
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSnakeCaseNamingConvention();
@@ -31,6 +33,8 @@ namespace WebApplication1.Models
             modelBuilder.Entity<Group>()
                         .HasMany<User>(g => g.Users)
                         .WithMany(u => u.Groups);
+
+            modelBuilder.Entity<Administrator>().HasOne<ReportSettings>(r => r.ReportSettings);
         }
     }
 }

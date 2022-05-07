@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using WebApplication1.Models;
 using WebApplication1.DataTransferObjects;
+using WebApplication1.Models.Authentication;
 
 namespace WebApplication1.Controllers
 {

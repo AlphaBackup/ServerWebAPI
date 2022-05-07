@@ -1,5 +1,8 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebApplication1.Utils;
+using WebApplication1.Utils.Reporting;
 
 namespace WebApplication1
 {
@@ -15,6 +18,6 @@ namespace WebApplication1
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                });
+                }).ConfigureServices(services => services.AddHostedService<ReportService>());
     }
 }

@@ -10,6 +10,9 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("status")]
+        public int Status { get; set; }
+
         [Column("backupFileAmount")]
         public int BackupFileAmount { get; set; }
 
