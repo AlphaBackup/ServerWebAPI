@@ -2,6 +2,7 @@
 using WebApplication1.Models;
 using WebApplication1.Utils;
 using WebApplication1.Models.Authentication;
+using WebApplication1.Utils.Enums;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -74,6 +75,37 @@ namespace WebApplication1.Controllers
             this.context.SaveChanges();
 
             return (int)client.ReportPeriod;
+        }
+
+        [HttpGet]
+        [Route("format/{id}")]
+        public int GetFormat(int id)
+        {
+            Administrator administrator = this.context.Administrators.Find(id);
+
+            id = administrator.ReportSettings.Id;
+
+            ReportSettings client = this.context.ReportSettings.Find(id);
+
+            return (int)client.ReportFormat;
+        }
+
+        [HttpPut]
+        [Route("format/{id}")]
+        public int UpdateFormat(int id)
+        {
+            Administrator administrator = this.context.Administrators.Find(id);
+
+            id = administrator.ReportSettings.Id;
+
+            ReportSettings client = this.context.ReportSettings.Find(id);
+
+            client.ReportFormat = (ReportFormat)(((int)client.ReportFormat + 1) % 2);
+
+            this.context.ReportSettings.Update(client);
+            this.context.SaveChanges();
+
+            return (int)client.ReportFormat;
         }
     }
 }

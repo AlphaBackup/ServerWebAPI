@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using WebApplication1.Utils;
+using WebApplication1.Utils.Enums;
 
 namespace WebApplication1.Models
 {
@@ -19,6 +20,9 @@ namespace WebApplication1.Models
 
         [Column("reportPeriod")]
         public ReportPeriod ReportPeriod { get; set; }
+        
+        [Column("reportFormat")]
+        public ReportFormat ReportFormat { get; set; }
 
         [ForeignKey("admin_id")]
         public virtual Administrator Administrator { get; set; }

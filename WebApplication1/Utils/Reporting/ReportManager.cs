@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
+using WebApplication1.Utils.Enums;
 
 namespace WebApplication1.Utils
 {
@@ -41,8 +42,10 @@ namespace WebApplication1.Utils
             administrators.ToList().ForEach(a =>
             {
                 ReportPeriod period = a.ReportSettings.ReportPeriod;
+                ReportFormat format = a.ReportSettings.ReportFormat;
+
                 this.cron.AddJob(CronFormatTime(period),
-                                  () => SendReport(a.Email, RelevantTimeStatsList(this.context.Stats, period), period));
+                                  () => SendReport(a.Email, RelevantTimeStatsList(this.context.Stats, period), period, format));
             });
 
             this.cron.AddJob("0 12,23 * * *", Initialize);
@@ -50,9 +53,9 @@ namespace WebApplication1.Utils
             this.cron.Start();            
         }
 
-        public void SendReport(string email, List<Stats> stats, ReportPeriod period)
+        public void SendReport(string email, List<Stats> stats, ReportPeriod period, ReportFormat format)
         {            
-            using (ReportFile reportFile = new ReportFile(stats))
+            using (ReportFile reportFile = new ReportFile(stats, format))
             {
                 using (MailMessage mailMessage = new MailMessage())
                 {

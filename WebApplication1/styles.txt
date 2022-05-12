@@ -10,6 +10,10 @@
 	margin-bottom: 20px;
         max-width: 600px;
     }
+	
+    th{
+    	background-color: light-gray;
+    }
 
     td,th{
         width: 200px;

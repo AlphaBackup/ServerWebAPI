@@ -54,7 +54,7 @@ namespace WebApplication1.Utils
 
             sb.AppendLine(@$"<td>{(stat.Status == 1 ? "Success" : "Failure")}</td>");
             sb.AppendLine(@$"<td>{stat.State}</td>");
-            sb.AppendLine(@$"<td>{stat.Date.ToShortDateString()}</td>");
+            sb.AppendLine(@$"<td>{stat.Date.ToString("dd/MM/yyyy HH:mm")}</td>");
 
             sb.Insert(0, @$"<tr>");
             sb.AppendLine(@$"</tr>");
