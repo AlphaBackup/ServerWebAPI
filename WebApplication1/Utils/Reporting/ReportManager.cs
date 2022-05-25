@@ -24,7 +24,7 @@ namespace WebApplication1.Utils
             Port = 587,
             Credentials = new NetworkCredential("alphabackup@outlook.cz", "qwertzuiop123"),
             EnableSsl = true,
-            UseDefaultCredentials = false,
+            UseDefaultCredentials = false,            
         };
 
         public ReportManager(CronDaemon cron)
@@ -54,22 +54,25 @@ namespace WebApplication1.Utils
         }
 
         public void SendReport(string email, List<Stats> stats, ReportPeriod period, ReportFormat format)
-        {            
+        {
             using (ReportFile reportFile = new ReportFile(stats, format))
             {
                 using (MailMessage mailMessage = new MailMessage())
                 {
-                    mailMessage.Subject = "Report";
+                    mailMessage.Subject = $" {(period == ReportPeriod.DAY ? "Daily" : period == ReportPeriod.WEEK ? "Weekly" : "Monthly")} Report";
                     mailMessage.From = new MailAddress("alphabackup@outlook.cz");
-                    mailMessage.Body = $"This is your {(period == ReportPeriod.DAY ? "Daily" : period == ReportPeriod.WEEK ? "Weekly" : "Monthly")} report.";
-                    mailMessage.To.Add(email);                    
+
+                    mailMessage.IsBodyHtml = (format == ReportFormat.HTML);
+                    mailMessage.Body = format == ReportFormat.HTML ? new HTMLReportBuilder(stats).GetHtml() : string.Empty;
+                    
+                    mailMessage.To.Add(email);
 
                     mailMessage.Attachments.Add(new Attachment(reportFile.FilePath));
                     this.smtpClient.SendMailAsync(mailMessage).Wait();
                 };
             };
         }
-        
+
         private List<Stats> RelevantTimeStatsList(DbSet<Stats> stats, ReportPeriod period)
         {
             DateTime dateTime = DateTime.Now;

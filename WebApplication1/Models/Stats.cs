@@ -10,6 +10,12 @@ namespace WebApplication1.Models
         [Column("id")]
         public int Id { get; set; }
 
+        [Column("destinationName")]
+        public string DestinationName { get; set; }
+
+        [Column("sourceName")]
+        public string SourceName { get; set; }
+
         [Column("status")]
         public int Status { get; set; }
 

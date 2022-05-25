@@ -21,7 +21,7 @@ namespace WebApplication1.Utils
 
             foreach (IGrouping<string, Stats> n in names)
             {
-                this.stringBuilder.AppendLine(@$"<h4>{n.Key}</h4>");
+                this.stringBuilder.AppendLine(@$"<div><h4>{n.Key}</h4></div>");
                 this.stringBuilder.AppendLine(this.Table(n.ToList()));
             }
         }
@@ -46,12 +46,16 @@ namespace WebApplication1.Utils
 
             if (isHeading)
             {
+                sb.AppendLine(@$"<th>SourceName</th>");
+                sb.AppendLine(@$"<th>DestinationName</th>");
                 sb.AppendLine(@$"<th>Status</th>");
                 sb.AppendLine(@$"<th>State</th>");
                 sb.AppendLine(@$"<th>Date</th>");
                 return sb.ToString();
             }
 
+            sb.AppendLine(@$"<td>{stat.SourceName}</td>");
+            sb.AppendLine(@$"<td>{stat.DestinationName}</td>");
             sb.AppendLine(@$"<td>{(stat.Status == 1 ? "Success" : "Failure")}</td>");
             sb.AppendLine(@$"<td>{stat.State}</td>");
             sb.AppendLine(@$"<td>{stat.Date.ToString("dd/MM/yyyy HH:mm")}</td>");
