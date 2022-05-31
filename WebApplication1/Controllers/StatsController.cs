@@ -90,8 +90,12 @@ namespace WebApplication1.Controllers
             client.Group = g;
             client.User = u;
 
-            this.context.Stats.Remove(client);
-            this.context.SaveChanges();
+            try
+            {
+                this.context.Stats.Remove(client);
+                this.context.SaveChanges();
+            }
+            catch {}
         }
     }
 }

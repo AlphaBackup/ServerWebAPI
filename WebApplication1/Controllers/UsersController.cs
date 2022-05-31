@@ -86,9 +86,21 @@ namespace WebApplication1.Controllers
         {
             User client = this.context.Users.Find(id);
 
-            this.context.Users.Remove(client);
+            try
+            {
+                this.context.Users.Remove(client);
+                this.context.SaveChanges();
+            }
+            catch { }            
+        }
 
-            this.context.SaveChanges();
+        [HttpPut]
+        [Route("exists")]
+        public int UserExists(User u)
+        {
+            bool result = this.context.Users.Any(x => x.Name == u.Name && u.Id != x.Id);
+
+            return result ? 1 : 0;
         }
     }
 }

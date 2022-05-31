@@ -119,8 +119,13 @@ namespace WebApplication1.Controllers
         public void Delete(int id)
         {
             Group client = this.context.Groups.Find(id);
-            this.context.Groups.Remove(client);
-            this.context.SaveChanges();
+
+            try
+            {
+                this.context.Groups.Remove(client);
+                this.context.SaveChanges();
+            }
+            catch{}
         }
     }
 }
